@@ -27,7 +27,7 @@ macro(add_ros_node name)
   cmake_parse_arguments(_ARG
     "SKIP_PACKAGE_SEARCH"
     "PROJECT_NAME;COMPONENT_CLASS"
-    "SOURCES;ROS1_COMPONENT_SOURCES;ROS1_EXE_SOURCES;ROS2_EXE_SOURCES;DIRECTORIES;INCLUDE_DIRS;SYSTEM_DEPS;PKG_DEPS;TARGET_DEPS"
+    "SOURCES;ROS1_SOURCES;ROS2_SOURCES;ROS1_COMPONENT_SOURCES;ROS1_EXE_SOURCES;ROS2_EXE_SOURCES;DIRECTORIES;INCLUDE_DIRS;SYSTEM_DEPS;PKG_DEPS;TARGET_DEPS"
     ${ARGN})
   if(_ARG_UNPARSED_ARGUMENTS)
     message(FATAL_ERROR
@@ -57,7 +57,7 @@ macro(add_ros_node name)
       include_directories(SYSTEM ${${sys_dep}_INCLUDE_DIRS})
     endforeach()
 
-    add_library(${name}_lib ${_ARG_SOURCES})
+    add_library(${name}_lib ${_ARG_SOURCES} ${_ARG_ROS1_SOURCES})
     target_link_libraries(${name}_lib ${catkin_LIBRARIES})
     foreach(sys_dep ${_ARG_SYSTEM_DEPS})
       target_link_libraries(${name}_lib ${${sys_dep}_LIBRARIES})
@@ -104,7 +104,7 @@ macro(add_ros_node name)
 
     include_directories(${_ARG_INCLUDE_DIRS})
 
-    add_library(${name}_lib SHARED ${_ARG_SOURCES})
+    add_library(${name}_lib SHARED ${_ARG_SOURCES} ${_ARG_ROS2_SOURCES})
     foreach(sys_dep ${_ARG_SYSTEM_DEPS})
       target_link_libraries(${name}_lib PUBLIC ${${sys_dep}_LIBRARIES})
     endforeach()

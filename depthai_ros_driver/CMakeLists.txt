@@ -64,7 +64,9 @@ add_ros_node(depthai_ros_driver
   SKIP_PACKAGE_SEARCH
   PROJECT_NAME ${PROJECT_NAME}
   COMPONENT_CLASS "rr::DepthAIBaseRos2"
-  SOURCES src/depthai_base.cpp src/depthai_common.cpp
+  SOURCES src/depthai_common.cpp
+  ROS1_SOURCES src/depthai_base.cpp
+  ROS2_SOURCES src/depthai_base_ros2.cpp
   ROS1_COMPONENT_SOURCES src/depthai_nodelet.cpp
   ROS1_EXE_SOURCES src/depthai_node.cpp
   ROS2_EXE_SOURCES src/depthai_node_ros2.cpp
