@@ -169,7 +169,7 @@ macro(add_ros_node name)
     endforeach()
     ament_target_dependencies(${name}_lib PUBLIC ${_ARG_PKG_DEPS})
 
-    rclcpp_components_register_nodes(${name}_lib ${_ARG_COMPONENT_CLASS})
+    rclcpp_components_register_nodes(${name}_lib ${_ARG_ROS2_COMPONENT_CLASS})
 
     add_executable(${name}_node ${_ARG_ROS2_EXE_SOURCES})
     target_link_libraries(${name}_node PUBLIC ${name}_lib)
