@@ -51,7 +51,7 @@ else()
   )
 endif()
 
-include(cmake/ros_version_agnostic_add_node.cmake)
+find_package(depthai_cmake REQUIRED)
 
 # A bug in the CMake of the included external project depthai-core clobbers the
 # paths used to find ROS packages, so we have to search for them first and then
