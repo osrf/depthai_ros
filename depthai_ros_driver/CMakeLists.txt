@@ -27,7 +27,7 @@ project(depthai_ros_driver VERSION 0.1.0 LANGUAGES CXX)
 find_package(OpenCV REQUIRED)
 find_package(Boost REQUIRED COMPONENTS system)
 
-set(PKG_DEPS
+set(COMMON_PKG_DEPS
   camera_info_manager
   cv_bridge
   depthai_ros_msgs
@@ -38,14 +38,14 @@ set(PKG_DEPS
 
 if($ENV{ROS_VERSION} STREQUAL 1)
   set (PKG_DEPS
-    ${PKG_DEPS}
+    ${COMMON_PKG_DEPS}
     nodelet
     roscpp
     node_interface
   )
 else()
   set (PKG_DEPS
-    ${PKG_DEPS}
+    ${COMMON_PKG_DEPS}
     rclcpp
     rclcpp_components
   )
